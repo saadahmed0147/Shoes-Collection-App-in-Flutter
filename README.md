@@ -1,4 +1,4 @@
-# shopping_app
+# Shoes-Collection-App-in-Flutter
 
 A new Flutter project.
 
