@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/colors.dart';
 import 'package:shopping_app/global_variables.dart';
-import 'package:shopping_app/pages/product_card.dart';
+import 'package:shopping_app/widgets/product_card.dart';
 import 'package:shopping_app/pages/product_details.dart';
 
 class ProductPreviewPage extends StatefulWidget {

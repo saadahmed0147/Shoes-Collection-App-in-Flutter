@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/colors.dart';
-import 'package:shopping_app/pages/cart.dart';
-import 'package:shopping_app/pages/product_preview_page.dart';
+import 'package:shopping_app/widgets/cart.dart';
+import 'package:shopping_app/pages/product_preview.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopping_app/colors.dart';
+import 'package:shopping_app/providers/cart_provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, Object> product;
@@ -14,13 +16,37 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  void onTap() {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    if (selectedSize != 0) {
+      cartProvider.addProduct(
+        {
+          'id': widget.product['id'],
+          'title': widget.product['title'],
+          'price': widget.product['price'],
+          'imageUrl': widget.product['imageUrl'],
+          'company': widget.product['company'],
+          'sizes': selectedSize,
+        },
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Added to cart successfully!')));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please select the size!'),
+        ),
+      );
+    }
+  }
+
   var selectedSize = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        centerTitle: false,
+        centerTitle: true,
         title: Text(
           'Details',
           style: Theme.of(context).textTheme.titleMedium,
@@ -98,7 +124,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         elevation: MaterialStateProperty.all<double>(10),
                         backgroundColor:
                             MaterialStateProperty.all<Color>(yellowColor)),
-                    onPressed: () {},
+                    onPressed: onTap,
                     icon: const Icon(
                       Icons.shopping_cart,
                       color: Colors.black,
